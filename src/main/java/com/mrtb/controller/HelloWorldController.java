@@ -1,27 +1,27 @@
 package com.mrtb.controller;
 
 import com.mrtb.Enities.User;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.context.MessageSource;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Locale;
 
 @Slf4j
-@Controller
+@RestController
+@RequiredArgsConstructor
 public class HelloWorldController {
-    @RequestMapping("/")
+
+    private final MessageSource messageSource;
+
+    @GetMapping("/user")
     public User getUser(
-            @RequestHeader (
-                    name= "Accept-Language",required = false
-            )final Locale locale,
-            @RequestParam(
-                    required = false,defaultValue = "World"
-            )final String name
-            ) {
-        User user = new User(name);
-        return user;
+            @RequestParam(required = false, defaultValue = "World") String name,
+            Locale locale
+    ) {
+        return new User(messageSource.getMessage("welcome.message", new Object[]{name}, locale));
     }
 }
