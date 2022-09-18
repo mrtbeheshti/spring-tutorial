@@ -20,8 +20,9 @@ public class HelloWorldController {
     @GetMapping("/user")
     public User getUser(
             @RequestParam(required = false, defaultValue = "World") String name,
+            @RequestParam(required = false,defaultValue = "Tehran") String city,
             Locale locale
     ) {
-        return new User(messageSource.getMessage("welcome.message", new Object[]{name}, locale));
+        return new User(messageSource.getMessage("welcome.message", new Object[]{name,city}, locale));
     }
 }

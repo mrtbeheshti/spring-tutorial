@@ -11,12 +11,10 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-    private String name;
+    private String message;
     private Timestamp signup_time;
-    public User(String name){
-        this.name = name;
+    public User(String message){
+        this.message = message;
         this.signup_time =  new Timestamp(System.currentTimeMillis());
     }
-
-
 }
