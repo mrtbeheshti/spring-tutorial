@@ -18,11 +18,11 @@ public class HelloWorldController {
     private final MessageSource messageSource;
 
     @GetMapping("/user")
-    public User getUser(
+    public String getUser(
             @RequestParam(required = false, defaultValue = "World") String name,
             @RequestParam(required = false,defaultValue = "Tehran") String city,
             Locale locale
     ) {
-        return new User(messageSource.getMessage("welcome.message", new Object[]{name,city}, locale));
+        return name + " " + "city";
     }
 }
