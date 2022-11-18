@@ -1,16 +1,18 @@
 package com.mrtb.Enities;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+
+@Data
+@Builder
 public class UserUpdate {
-
-    @NotNull
-    private long id;
-
     private String firstName;
     private String lastName;
+
+    @NotBlank(message = "username is required!")
+    @Pattern(regexp = "^[a-zA-Z0-9_-]{3,}$",message = "username must be at least 3 characters('a-z','A-Z','0-9','-','_')")
     private String username;
 }
